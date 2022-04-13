@@ -31,9 +31,12 @@ app.post("/", (req, res) => {
             const meteoDescription = meteodata.weather[0].description
             const icon = meteodata.weather[0].icon
             const imageUrl = "https://openweathermap.org/img/wn/" + icon + "@2x.png"
-            res.write("<h1>Il fait " + temp + " &deg;C &agrave; " + query + "</h1>")
-            res.write("<p>Le temps actuel:  " + meteoDescription + "<p>")
+            res.writeHead(200, {"Content-Type": "text/html; charset=utf-8"})
+            res.write("<h1>Il fait " + temp + " °C " + query + "</h1>")
+            res.write("<p>La météo annonce un temps :  " + meteoDescription + "<p>")
             res.write("<img src=" + imageUrl + ">")
+
+            res.send()
         })
     })
 
