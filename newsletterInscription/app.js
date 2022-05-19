@@ -37,18 +37,30 @@ app.post('/', (req, res) => {
         auth: "eboudrenghien:259515e2c26d301df61d52e71e6f5d29-us14"
     }
 
-    https.request(url, options, (response) => {
+    const request = https.request(url, option, (response) => {
+
+        if(response.statusCode === 200) {
+            res.sendFile(__dirname + "/succes.html")
+        } else {
+            res.sendFile(__dirname + "/echec.html")
+            
+        }
        response.on("data", (data) => {
            console.log(JSON.parse(data));
-       } )
+       })
     })
+    request.write(jsonData)
+    request.end()
 })
 
+app.post('/echec', (req, res) =>{
+    res.redirect('/')
+})
 // API Key
 // 259515e2c26d301df61d52e71e6f5d29-us14
 
 // List ID
 // 379ebf7534
-app.listen(3000, () => {
+app.listen(process.env.PORT || 3000, () => {
     console.log("Le serveur fonctionne sur le port http://localhost:3000");
 })
