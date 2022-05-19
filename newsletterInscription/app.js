@@ -1,8 +1,10 @@
 const express = require ('express')
 const bodyParser = require ('body-parser')
 const request = require ('request')
+const dotenv = require ('dotenv')
 const https = require ('https')
 
+dotenv.config()
 const app = express()
 
 app.use(express.static("public"))
@@ -31,7 +33,7 @@ app.post('/', (req, res) => {
     }
 
     const jsonData = JSON.stringify(data)
-    const url = "https://us14.api.mailchimp.com/3.0/lists/379ebf7534"
+    const url = process.env.apiNewsletter
     const option = {
         method: "POST",
         auth: "eboudrenghien:259515e2c26d301df61d52e71e6f5d29-us14"
@@ -56,11 +58,7 @@ app.post('/', (req, res) => {
 app.post('/echec', (req, res) =>{
     res.redirect('/')
 })
-// API Key
-// 259515e2c26d301df61d52e71e6f5d29-us14
 
-// List ID
-// 379ebf7534
 app.listen(process.env.PORT || 3000, () => {
     console.log("Le serveur fonctionne sur le port http://localhost:3000");
 })
