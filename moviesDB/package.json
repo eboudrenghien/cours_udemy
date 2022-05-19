@@ -1,0 +1,17 @@
+{
+  "name": "moviesdb",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.0.1",
+    "mongodb": "^4.6.0",
+    "mongoose": "^6.3.3"
+  }
+}
