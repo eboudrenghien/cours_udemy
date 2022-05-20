@@ -5,7 +5,9 @@ mongoose.connect("mongodb://localhost:27017/moviesDB",
     {useNewUrlParser: true})
 
 const movieSchema = new mongoose.Schema({
-    name: String,
+    name: {
+        type : String,
+        required: [true, "veuillez entrer un champ"]},
     score: Number,
     avis: String
 })
@@ -80,41 +82,4 @@ const findDocuments = (db, callback) => {
 
 
 
-
-
-
-    // const insertDocuments = (db, callback) => {
-    //     const collection = db.collection('movies')
-    //     collection.insertMany([
-    //         {
-    //             name: "Le seigneur des anneaux - trilogie - version longue",
-    //             score: 10/10,
-    //             avis : "Une trilogie sublime, drôle."
-            
-    //         }, 
-    //         {
-    //             name: "Harry Potter - La coupe de feu",
-    //             score: 9.5/10,
-    //             avis : "Ce film nous fait passer par toutes les émotions"
-            
-    //         }, 
-    //         {
-    //             name: "Totoro",
-    //             score: 3/10,
-    //             avis : "Tellement, on m'a parlé de ce film, que je me suis lassée. Je m'attendais à un truc de dingue, mais au final non. L'histoire est prévisible."
-            
-    //         },
-    //         {
-    //             name: "Le voyage de Chihiro",
-    //             score: 8.5/10,
-    //             avis: "Le voyage de Chihiro nous emporte loin, que ce soit niveau émotions, imagination. Je conseille ce film."
-    //         }
-    //     ], ((err, result) => {
-    //         assert.equal(err, null) // cette commande permet de savoir si il n'y a pas d'erreurs lors de l'insertion des documents.
-    //         assert.equal(4,result.insertedCount);
-    //         assert.equal(4,Object.keys(result.insertedIds).length);
-    //         console.log("insertion de 4 documents dans la collection");
-    //         callback(result)
-    //     }))
-    // }
 
